@@ -1,1 +1,45 @@
-<p>demo1 works!</p>
+<form onsubmit="return false;">
+    <div class="container">
+        <!-- First 3x3 Matrix -->
+        <div class="matrix input_matrix">
+            <input type="number" name="matrix1_00" value="1">
+            <input type="number" name="matrix1_01" value="2">
+            <input type="number" name="matrix1_02" value="3">
+            <input type="number" name="matrix1_10" value="4">
+            <input type="number" name="matrix1_11" value="5">
+            <input type="number" name="matrix1_12" value="6">
+            <input type="number" name="matrix1_20" value="7">
+            <input type="number" name="matrix1_21" value="8">
+            <input type="number" name="matrix1_22" value="9">
+        </div>
+
+        <!-- Second 3x3 Matrix -->
+        <div class="matrix input_matrix">
+            <input type="number" name="matrix2_00" value="9">
+            <input type="number" name="matrix2_01" value="8">
+            <input type="number" name="matrix2_02" value="7">
+            <input type="number" name="matrix2_10" value="6">
+            <input type="number" name="matrix2_11" value="5">
+            <input type="number" name="matrix2_12" value="4">
+            <input type="number" name="matrix2_20" value="3">
+            <input type="number" name="matrix2_21" value="2">
+            <input type="number" name="matrix2_22" value="1">
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+<!-- Result 3x3 Matrix -->
+<div class="container">
+    <div class="matrix result-matrix">
+        <input type="number" name="matrix3_00" value="" readonly>
+        <input type="number" name="matrix3_01" value="" readonly>
+        <input type="number" name="matrix3_02" value="" readonly>
+        <input type="number" name="matrix3_10" value="" readonly>
+        <input type="number" name="matrix3_11" value="" readonly>
+        <input type="number" name="matrix3_12" value="" readonly>
+        <input type="number" name="matrix3_20" value="" readonly>
+        <input type="number" name="matrix3_21" value="" readonly>
+        <input type="number" name="matrix3_22" value="" readonly>
+    </div>
+</div>
