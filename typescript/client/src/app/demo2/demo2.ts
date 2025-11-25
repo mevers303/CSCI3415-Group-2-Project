@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-const verbose: boolean = false;
+const verbose: boolean = true;
 
+
+// 3x3 matrix class
 class Matrix {
     public values: number[][];
 
@@ -14,7 +17,7 @@ class Matrix {
 }
 
 
-
+// Angular component definition
 @Component({
   selector: 'app-demo2',
   imports: [],
@@ -23,25 +26,37 @@ class Matrix {
 })
 export class Demo2 {
 
-    protected multiplyMatrices(m1: Matrix, m2: Matrix): Matrix {
-        const result: number[][] = [
-            [0, 0, 0],
-            [0, 0, 0],
-            [0, 0, 0]
-        ];
+    // properties
+    private resultMatrix: Matrix | undefined;
+    private http = inject(HttpClient);
 
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                for (let k = 0; k < 3; k++) {
-                    result[i][j] += m1.values[i][k] * m2.values[k][j];
-                }
-            }
+
+    // methods
+    // function to handle API response and display result
+    public handleApiResponse(data: number[][]): void {
+
+        if (verbose) {
+            console.log('Received API response:');
+            console.log(data);
         }
 
-        return new Matrix(result);
+        // store result matrix
+        let resultMatrix = new Matrix(data);
+
+        // display the result matrix in the result inputs
+        // get array of result input elements
+        const resultInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('.result_matrix input');
+        // flatten the result matrix for easy assignment
+        let flatResult: number[] = [];
+        resultMatrix.values.forEach(row => flatResult.push(...row));
+        // assign values to result input elements
+        resultInputs.forEach((input, index) => {
+            input.value = flatResult[index].toString();
+        });
+
     }
 
-
+    // compute the result matrix
     public computeMatrix(): void {
 
         if (verbose) console.log('Computing matrix...');
@@ -56,19 +71,8 @@ export class Demo2 {
         if (verbose) console.log('Matrix 2:', m2);
 
         // compute the result matrix
-        const resultMatrix = this.multiplyMatrices(m1, m2);
-        if (verbose) console.log('Result Matrix:', resultMatrix);
-
-        // display the result matrix in the result inputs
-        // get array of result input elements
-        const resultInputs: NodeListOf<HTMLInputElement> = document.querySelectorAll('.result_matrix input');
-        // flatten the result matrix for easy assignment
-        let flatResult: number[] = [];
-        resultMatrix.values.forEach(row => flatResult.push(...row));
-        // assign values to result input elements
-        resultInputs.forEach((input, index) => {
-            input.value = flatResult[index].toString();
-        });
+        const data = { m1: m1.values, m2: m2.values };
+        this.http.post<number[][]>('/api/demo2', data).subscribe(this.handleApiResponse);
 
     }
 

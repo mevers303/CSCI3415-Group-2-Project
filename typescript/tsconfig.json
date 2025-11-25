@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "module": "es2015",
     "esModuleInterop": true,
     "target": "es6",
     "moduleResolution": "node",
     "sourceMap": true,
-    "outDir": "dist"
+    "outDir": "dist",
   },
-  "lib": ["es2015"]
+  "lib": ["es2015"],
+  "exclude": ["node_modules", "dist", "client"],
+  "allowImportingTsExtensions": true
 }
