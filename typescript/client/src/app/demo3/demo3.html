@@ -8,12 +8,13 @@
 	<div class="controls">
 		<div class="counter">{{current + 1}} / {{images.length}}</div>
 		<div class="thumbs">
-			<img *ngFor="let img of images; let i = index"
-					 class="thumb"
-					 [src]="img"
-					 (click)="select(i)"
-					 [class.active]="i === current"
-					 [attr.alt]="'Thumbnail ' + (i+1)">
+            @for (img of images; track img) {
+                <img    class="thumb"
+                        [src]="img"
+                        (click)="select($index)"
+                        [class.active]="$index === current"
+                        [attr.alt]="'Thumbnail ' + ($index + 1)">
+            }
 		</div>
 	</div>
 </div>
