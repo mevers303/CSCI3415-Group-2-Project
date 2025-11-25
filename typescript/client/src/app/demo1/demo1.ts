@@ -1,7 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
+// verbosity flag
 const verbose: boolean = false;
 
+
+// 3x3 matrix class
 class Matrix {
     public values: number[][];
 
@@ -14,22 +17,27 @@ class Matrix {
 }
 
 
-
+// Angular component definition
 @Component({
   selector: 'app-demo1',
   imports: [],
   templateUrl: './demo1.html',
   styleUrl: './demo1.css',
 })
-export class Demo1 {
+export class Demo1 implements OnInit {
 
+
+    // multiply two 3x3 matrices
     protected multiplyMatrices(m1: Matrix, m2: Matrix): Matrix {
+
+        // matrix to hold result
         const result: number[][] = [
             [0, 0, 0],
             [0, 0, 0],
             [0, 0, 0]
         ];
 
+        // do matrix multiplication
         for (let i = 0; i < 3; i++) {
             for (let j = 0; j < 3; j++) {
                 for (let k = 0; k < 3; k++) {
@@ -38,10 +46,12 @@ export class Demo1 {
             }
         }
 
+        // return result matrix
         return new Matrix(result);
     }
 
 
+    // compute the result matrix and display it
     public computeMatrix(): void {
 
         if (verbose) console.log('Computing matrix...');
@@ -70,6 +80,12 @@ export class Demo1 {
             input.value = flatResult[index].toString();
         });
 
+    }
+
+
+    // pupulate the result matrix on component initialization
+    public ngOnInit(): void {
+        this.computeMatrix();
     }
 
 }

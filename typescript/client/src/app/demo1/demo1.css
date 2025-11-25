@@ -36,7 +36,7 @@ form {
 .multiply-symbol {
     font-size: 2em;
     align-self: center;
-    margin-top: 111px; /* Adjust as needed for perfect alignment */
+    margin-top: 160px; /* Adjust as needed for perfect alignment */
 }
 
 /* Hides the number input spinners for a cleaner look */
