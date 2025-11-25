@@ -17,7 +17,7 @@
   },
   "license": "ISC",
   "author": "Mark Evers",
-  "type": "module",
+  "type": "esnext",
   "main": "server.js",
   "scripts": {
     "start": "tsc && node dist/server.js",

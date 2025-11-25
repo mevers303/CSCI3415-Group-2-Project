@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { demo2 } from './api/demo2.ts';
+import { demo2 } from './api/demo2';
 
 const app: express.Application = express();
 const port: number = 3000;
