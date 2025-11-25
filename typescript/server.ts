@@ -2,23 +2,23 @@ import express from 'express';
 const app = express();
 const port = 3000;
 
-// handling CORS
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", 
-               "http://localhost:4200");
-    res.header("Access-Control-Allow-Headers", 
-               "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+// const config: AppConfiguration = {
+//   angularEnvironment: process.env['ANGULAR_ENVIRONMENT'] === 'development' ? 'development' : 'production',
+//   apiUrl: process.env['API_URL'] ?? null,
+//   backgroundColor: process.env['BACKGROUND_COLOR'] ?? null
+// }
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+// If not found, doesn't throw an error.
+app.use(express.static(`${process.cwd()}/client/dist/client/browser/`, {}));
 
-// route for handling requests from the Angular client
-app.get('/api/hello', (req, res) => {
-    res.json({ message: 
-            'Hello world!' });
+// // Provide configuration on /config
+// app.get('/config', (req, res) => {
+//   res.json(config);
+// });
+
+// Other requests should be redirected to our Angular client
+app.use('*', (req: express.Request, res: express.Response) => {
+  res.sendFile(`${process.cwd()}/client/dist/client/browser/index.html`);
 });
 
 app.listen(port, () => {
