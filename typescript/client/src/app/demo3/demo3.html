@@ -1,1 +1,19 @@
-<p>demo3 works!</p>
+<div class="album" tabindex="0" (keydown)="onKey($event)">
+	<div class="viewer">
+		<button class="nav prev" (click)="prev()" aria-label="Previous image">‹</button>
+		<img class="main" [src]="images[current]" alt="Dog photo {{current+1}}">
+		<button class="nav next" (click)="next()" aria-label="Next image">›</button>
+	</div>
+
+	<div class="controls">
+		<div class="counter">{{current + 1}} / {{images.length}}</div>
+		<div class="thumbs">
+			<img *ngFor="let img of images; let i = index"
+					 class="thumb"
+					 [src]="img"
+					 (click)="select(i)"
+					 [class.active]="i === current"
+					 [attr.alt]="'Thumbnail ' + (i+1)">
+		</div>
+	</div>
+</div>
