@@ -1,0 +1,33 @@
+// 1. We define a specific 'Contract' (Interface)
+interface Vector2D {
+    x: number;
+    y: number;
+}
+
+// 2. A function that demands a Vector2D
+function calculateMagnitude(v: Vector2D): number {
+    return Math.sqrt(v.x ** 2 + v.y ** 2);
+}
+
+// ==========================================================
+// SCENARIO B: A Class with NO link to the Interface
+// ==========================================================
+class Planet {
+    x: number;
+    y: number;
+    name: string; // Extra property
+
+    constructor(x: number, y: number, name: string) {
+        this.x = x;
+        this.y = y;
+        this.name = name;
+    }
+}
+
+const mars = new Planet(3, 4, "Mars");
+
+// IT WORKS! 
+// TypeScript looks at 'mars' and asks: 
+// "Does it have 'x' (number)? Yes. Does it have 'y' (number)? Yes."
+// It ignores the extra 'name' property and the different class name.
+console.log(calculateMagnitude(mars)); // Works ✅
