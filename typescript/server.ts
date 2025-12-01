@@ -20,7 +20,7 @@ app.use('*', (req: express.Request, res: express.Response) => {
   res.sendFile(`${process.cwd()}/client/dist/client/browser/index.html`);
 });
 
-// open theserver
+// open the server
 app.listen(port, () => {
   return console.log(`Express is listening at http://localhost:${port}`);
 });
