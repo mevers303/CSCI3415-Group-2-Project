@@ -1,3 +1,44 @@
+# TO RUN
+
+## Dart
+Navigate to `dart/matrix_multiplication`
+```bash
+cd dart/matrix_multiplication
+```
+Run one of the following:
+```bash
+./start_linux.sh
+```
+OR
+```bash
+./start_web.sh
+```
+Additionally, you can try building for Windows:
+```bash
+flutter build windows
+```
+
+## Typescript
+Navigate to `typescript/`
+```bash
+cd typescript
+```
+Install `npm` package:
+```bash
+npm init
+```
+Start Express web server
+```bash
+npm start
+```
+
+
+<br><br><br>
+---
+<br><br><br>
+
+
+# GUIDELINES
 ## Typescript vs. Dart
 
 This git repository contains code for Group #2's project for CSCI 3415 Fall 2025: Principles of Programming languages.
